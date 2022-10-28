@@ -1,8 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .forms import UserForm
+
 # Create your views here.
 def index(request):
-    return HttpResponse("First project using Django")
+    if request.method == "POST":
+        name=request.POST.get("name")
+        age=request.POST.get("age")
+        return HttpResponse("<p class='text-sm-start'>{0} {1}<p>".format(name, age))
+    else:
+        userForm=UserForm()
+        return render(request, "index.html", {"form": userForm})
 def about(request):
     return HttpResponse("<h2>About</h2>")
 def contact(request):
