@@ -12,3 +12,6 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def show_article():
+    article = get_object_or_404(Article)
